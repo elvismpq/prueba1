@@ -16,12 +16,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
     EditText autName,autClave,autEmail,autPhone;
 
     Button bReg;
     FirebaseAuth fAuth;
+    DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +34,6 @@ public class Register extends AppCompatActivity {
         autClave=findViewById(R.id.passwd);
         autEmail=findViewById(R.id.correo);
         bReg=findViewById(R.id.bReg);
-
         fAuth=FirebaseAuth.getInstance();
         if(fAuth.getCurrentUser()!=null){
             startActivity(new Intent(getApplicationContext(),Productos.class));
@@ -58,6 +61,7 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
+                            FirebaseUser user=fAuth.getCurrentUser();
                             Toast.makeText(Register.this, "Usuario creado exitósamente",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }else{

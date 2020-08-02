@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.UUID;
 
-public class Crear extends AppCompatActivity {
+public class editar extends AppCompatActivity {
     DatabaseReference DataBase;
     FirebaseDatabase fData;
     EditText nombre,descripcion,precio;
@@ -26,7 +26,7 @@ public class Crear extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear);
+        setContentView(R.layout.activity_editar);
         precio=findViewById(R.id.preciotv);
         fData= FirebaseDatabase.getInstance();
         DataBase=fData.getReference("Artículos");
@@ -63,10 +63,9 @@ public class Crear extends AppCompatActivity {
                 articulo.setNombre(nombre.getText().toString());
 
                 DataBase.child(articulo.getId()).setValue(articulo);
-                Toast.makeText(Crear.this, "Sus datos has sido ingresados correctamente",Toast.LENGTH_SHORT).show();
+                Toast.makeText(editar.this, "Sus datos has sido modificados",Toast.LENGTH_SHORT).show();
                 limpiar();
             }
-
             private void limpiar() {
                 precio.setText("");
                 descripcion.setText("");
@@ -74,16 +73,12 @@ public class Crear extends AppCompatActivity {
             }
         });
 
-       bAtras.setOnClickListener(new View.OnClickListener() {
+        bAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),Productos.class));
                 finish();
             }
         });
-
-
     }
-
-
 }

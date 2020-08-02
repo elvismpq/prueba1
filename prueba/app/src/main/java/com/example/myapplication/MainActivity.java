@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etUser,etPassword;
     Button logInbt;
     FirebaseAuth fAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         etUser=findViewById(R.id.etUser);
         etPassword=findViewById(R.id.etPassword);
         logInbt=findViewById(R.id.logInbt);
-        aux=findViewById(R.id.aux);
         fAuth= FirebaseAuth.getInstance();
         if(fAuth.getCurrentUser()!=null){
             startActivity(new Intent(getApplicationContext(),Productos.class));
